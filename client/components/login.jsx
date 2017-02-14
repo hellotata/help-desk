@@ -18,10 +18,10 @@ export default class Login extends React.Component {
     }*/
 
     render() {
+        console.log(this.props);
         return (
 
             <div style = {styles.container} className="login">
-                <img width = '400px' src = 'usizo2.png'/>
                 <div style = {styles.border}>
                 <h3 style = {{textAlign: 'center'}}>Login</h3>
                 <form style = {{textAlign: 'center'}} name = 'logIn' onSubmit={this.props.handleLogIn}>
@@ -36,7 +36,7 @@ export default class Login extends React.Component {
                     <br></br>
                     <input style = {styles.submit} type="submit" value="Submit" />
                 </form>
-                <Link to = '/signup'>Need an account? Sign up</Link>
+                <Link to ='signup'>Need an account? Sign up</Link>
                 </div>
             </div>
         )
