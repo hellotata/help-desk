@@ -7,16 +7,26 @@ export default class ChatWindow extends React.Component {
     }
     render() {
         return (
-            // <div className="chat-window">
             <div className="chat-window">
-              <div>
-                <center><h1>CHAT</h1></center>
-              </div>
+              <h4>Chat</h4>
               <div className="messages-body">
                 <ChatBox userName={this.props.userName} chatMessages={this.props.chatMessages}/>
               </div>
-              <form onSubmit={this.props.postMessage.bind(null, this.props.id)}>
-                <input type='text' placeholder="Write something..." value={this.props.chatInput} onChange={this.props.chatInputHandler}></input>
+              <form 
+                onSubmit={this.props.postMessage.bind(null, this.props.id)}
+                className="input-group">
+                <input
+                  type='text'
+                  className="form-control"
+                  placeholder="Write something..."
+                  value={this.props.chatInput}
+                  onChange={this.props.chatInputHandler} />
+                <span className="input-group-btn">
+                  <button
+                      className="btn btn-default">
+                      Submit
+                  </button>
+                </span>
               </form>
             </div>
         )

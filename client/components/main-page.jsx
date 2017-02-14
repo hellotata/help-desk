@@ -12,24 +12,30 @@ export default class MainPage extends React.Component {
     }
     render() {
         return (
-            <div>
-                <QuestionsWindow
-                    questions={this.props.questions}
-                    userName={this.props.userName}
-                    postNewQuestion={this.props.postNewQuestion}
-                    setSelectedQuestionChat={this.props.setSelectedQuestionChat}
-                    newQuestionInputHandler={this.props.newQuestionInputHandler}
-                    newQuestionInput={this.props.newQuestionInput}
-                />
-                <ImageWindow />
-                <ChatWindow
-                    userName={this.props.userName}
-                    chatMessages={this.props.chatMessages}
-                    id={this.props.selectedQuestionId}
-                    chatInputHandler={this.props.chatInputHandler}
-                    chatInput={this.props.chatInput}
-                    postMessage={this.props.postMessage}
-                />
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-4">
+                        <QuestionsWindow
+                            questions={this.props.questions}
+                            userName={this.props.userName}
+                            postNewQuestion={this.props.postNewQuestion}
+                            setSelectedQuestionChat={this.props.setSelectedQuestionChat}
+                            newQuestionInputHandler={this.props.newQuestionInputHandler}
+                            newQuestionInput={this.props.newQuestionInput}
+                        />
+                    </div>
+                    <div className="col-sm-8">
+                        <ImageWindow />
+                        <ChatWindow
+                            userName={this.props.userName}
+                            chatMessages={this.props.chatMessages}
+                            id={this.props.selectedQuestionId}
+                            chatInputHandler={this.props.chatInputHandler}
+                            chatInput={this.props.chatInput}
+                            postMessage={this.props.postMessage}
+                        />
+                    </div>
+                </div>
             </div>
         )
     }
