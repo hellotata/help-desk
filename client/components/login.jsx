@@ -21,72 +21,44 @@ export default class Login extends React.Component {
         console.log(this.props);
         return (
 
-            <div style = {styles.container} className="login">
-                <div style = {styles.border}>
-                <h3 style = {{textAlign: 'center'}}>Login</h3>
-                <form style = {{textAlign: 'center'}} name = 'logIn' onSubmit={this.props.handleLogIn}>
-                    <div style = {{margin: '10px'}}><label>
-                    Enter Username:&nbsp; &nbsp;
-                    <input type="text" name = 'username' />
-                    </label></div>
-                    <div style = {{margin: '10px'}}><label>
-                    Enter Password: &nbsp; &nbsp;
-                    <input type ="password" name = 'password'/>
-                    </label></div>
-                    <br></br>
-                    <input style = {styles.submit} type="submit" value="Submit" />
+
+<div className="container">
+    <div className="row">
+        <div className="col-md-4 col-md-offset-4 text-center">
+            <div className="login-panel panel panel-default">
+                <div className="panel-heading">
+                    <h1 className="panel-title">Sign in</h1>
+                </div>
+                <div className="panel-body">
+                    <form name = 'logIn' onSubmit={this.props.handleLogIn}>     
+                        <div className="form-group">
+                            <input className="form-control" type="text" name = 'username' placeholder="Username" />
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type ="password" name = 'password' placeholder="Password" />
+                        </div>
+                    <input className="btn btn-primary btn-block" type="submit" value="Submit" />
                 </form>
-                <Link to ='signup'>Need an account? Sign up</Link>
                 </div>
             </div>
+            <Link to='/signup' className="text-right">Need an account? Signup</Link>
+        </div>
+    </div>
+</div>
+
+
+//                     <form role="form" name="login" onSubmit={this.props.handleLogIn}>
+
+//                             <div className="form-group">
+//                                 <input name="username" className="form-control" placeholder="Username" autoFocus />
+//                             </div>
+//                             <div className="form-group">
+//                                 <input name="password" className="form-control" placeholder="Password" />
+//                             </div>
+//                             <input className="btn btn-lg btn-primary btn-block" type="submit" value="Submit" />
+                            
+
+
         )
-    }
-}
-const styles = {
-    border: {
-        border: '1px black solid',
-        borderRadius: '10px',
-        paddingBottom: '10px',
-        paddingLeft: '10px',
-        paddingRight: '10px',
-    },
-    container: {
-        fontFamily: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-        padding: '20px',
-        paddingTop: '10px',
-        left: '50%',
-        top: '50%',
-        width: '400px',
-        position: 'absolute',
-        WebkitTransform: 'translate3d(-50%, -50%, 0)',
-        MozTransform: 'translate3d(-50%, -50%, 0)',
-        transform: 'translate3d(-50%, -50%, 0)',
-        color: 'black'
-    },
-    submit: {
-        float: 'right',
-        backgroundColor: '#920f0f',
-        borderRadius:'6px',
-        border: '1px solid black',
-        display: 'inline-block',
-        cursor: 'pointer',
-        color: 'white',
-        fontFamily: 'Arial',
-        fontSize: '15px',
-        padding: '6px 24px',
-        textDecoration: 'none',
-    },
-    account: {
-        fontFamily: 'Arial',
-        fontSize: '15px',
-        border: '1px solid #268a16',
-        cursor: 'pointer',
-        padding: '6px 24px',
-        textDecoration: 'none'
-    },
-    label: {
-        display: 'inline-block',
-        width:'100px',
-        textAlign: 'right'
     }
 }
