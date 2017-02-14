@@ -11,24 +11,29 @@ export default class Signup extends React.Component {
     
     render() {
         return (
-            <div style = {styles.container} className="signup">
-                <h3>Sign up</h3>
-                <form name = 'signUp' onSubmit={this.props.handleSignUp}>
-                    <div style = {{margin: '10px'}}>
-                    <label>
-                    Pick Username:&nbsp; &nbsp;
-                    <input type="text" name = 'username'  />
-                    </label>
-                    </div>
-                    <div style = {{margin: '10px'}}>
-                    <label>
-                    Pick Password: &nbsp; &nbsp;
-                    <input type ="password" name = 'password'/>
-                    </label>
-                    </div>
-                    <input style = {styles.submit} type="submit" value="Submit" />
-                </form>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-4 col-sm-offset-4 text-center">
+                <div className="login-panel panel panel-default">
+                  <div className="panel-heading">
+                    <h1 className="panel-title">Sign in</h1>
+                  </div>
+                  <div className="panel-body">
+                    <form name = 'signUp' onSubmit={this.props.handleSignUp}>  
+                      <div className="form-group">
+                        <input className="form-control" type="text" name = 'username'  />
+                      </div>
+                      <div className="form-group">
+                        <input className="form-control" type ="password" name = 'password'/>
+                      </div>
+                      <input className="btn btn-primary btn-block" type="submit" value="Submit" />
+                    </form>
+                  </div>
+                </div>
+                <Link to='/signup' className="text-right">Need an account? Signup</Link>
+              </div>
             </div>
+          </div>
         )
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import Question from './question.jsx';
-import MyQuestion from './my-question.jsx';
 import NewQuestion from './new-question.jsx';
 
 export default class QuestionWindow extends React.Component {
@@ -10,7 +9,8 @@ export default class QuestionWindow extends React.Component {
             if (this.props.userName === this.props.questions[key].userName) {
 
                 questions.push(
-                    <MyQuestion
+                    <Question
+                        listGroupClass='question list-group-item'
                         setSelectedQuestionChat={this.props.setSelectedQuestionChat}
                         id={this.props.questions[key].id}
                         userName={this.props.questions[key].userName}
@@ -20,6 +20,7 @@ export default class QuestionWindow extends React.Component {
             } else {
                 questions.push(
                     <Question
+                        listGroupClass='question list-group-item'
                         setSelectedQuestionChat={this.props.setSelectedQuestionChat}
                         id={this.props.questions[key].id}
                         userName={this.props.questions[key].userName}

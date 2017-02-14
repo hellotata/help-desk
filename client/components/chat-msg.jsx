@@ -6,13 +6,13 @@ export default class ChatMsg extends React.Component {
     }
     render() {
         return (
-            <div className="panel panel-default">
+            <div className={this.props.panelClass}>
+                <div className="panel-heading">
+                    <strong className="user">{this.props.userName}</strong>
+                    <small className="message-time"> at {this.props.created_at}</small>
+                </div>
                 <div className="panel-body">
                     {this.props.message}
-                </div>
-                <div className="panel-footer">
-                    <span className="user">{this.props.userName}</span>
-                    <span className="message-time"> at {this.props.created_at}</span>
                 </div>
             </div>
         )

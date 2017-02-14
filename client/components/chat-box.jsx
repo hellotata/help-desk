@@ -1,5 +1,5 @@
 import React from 'react';
-import MyChatMsg from './my-chat-msg.jsx';
+// import MyChatMsg from './my-chat-msg.jsx';
 import ChatMsg from './chat-msg.jsx';
 import $ from 'jquery';
 
@@ -16,12 +16,14 @@ export default class ChatWindow extends React.Component {
         let messages = [];
         this.props.chatMessages.forEach((message) => {
             if (this.props.userName === message.userName) {
-                messages.push(<MyChatMsg
+                messages.push(<ChatMsg
+                    panelClass='panel panel-info'
                     userName={message.userName}
                     message={message.message}
                     created_at={message.created_at}/>);
             } else {
                 messages.push(<ChatMsg
+                    panelClass='panel panel-default'
                     userName={message.userName}
                     message={message.message}
                     created_at={message.created_at}/>);
