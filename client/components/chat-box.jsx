@@ -1,7 +1,5 @@
 import React from 'react';
-// import MyChatMsg from './my-chat-msg.jsx';
 import ChatMsg from './chat-msg.jsx';
-import $ from 'jquery';
 
 export default class ChatWindow extends React.Component {
     constructor(props) {
