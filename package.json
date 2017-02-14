@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
-    "watch": "webpack -w ./src/index.js ./client/bundle.js",
-    "build": "webpack ./src/index.js ./client/bundle.js"
+    "start": "NODE_ENV=dev nodemon server/server.js",
+    "watch": "webpack -w",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",

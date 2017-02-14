@@ -8,7 +8,7 @@ function getUsers(req, res) {
 }
 
 function addUser(req, res) {
-  console.log('in add user');
+  // console.log('in add user');
   
   //need error for if user already exists
   if(req.body.username && req.body.password) {
@@ -30,6 +30,7 @@ function verifyUser(req, res) {
         res.cookie('user', req.body.username) //add sessions
         res.json({status: 'success', username: req.body.username});
     } else {
+      // take out, send error status, print message in front end
       res.redirect('/');
     };
   });

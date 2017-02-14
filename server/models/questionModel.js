@@ -10,6 +10,7 @@ const Question = connection.define('questions', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  // what is this? do we need this?
   file: {
     type: Sequelize.TEXT,
   },

@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
+const config = require('./../config.js');
 
-const connection = new Sequelize('postgres://sjewxpel:tynvapNbP-8ig-LVnhHQhdZSNf95o7kB@babar.elephantsql.com:5432/sjewxpel');
+let thisDb = config.get(process.env.NODE_ENV).database;
+const connection = new Sequelize(thisDb);
 
 module.exports = connection;

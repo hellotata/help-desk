@@ -91,6 +91,7 @@ export default class App extends React.Component {
       this.setState(newState);
     });
   }
+
   getMessages() {
     $.get('/messages', (res) => {
       const temp = this.state.questions;
@@ -121,14 +122,17 @@ export default class App extends React.Component {
     });
     this.setState({ chatInput: '' })
   }
+
   newQuestionInputHandler(e) {
     e.preventDefault();
     this.setState({ newQuestionInput: e.target.value });
   }
+
   chatInputHandler(e) {
     e.preventDefault();
     this.setState({ chatInput: e.target.value });
   }
+
   setSelectedQuestionChat(id) {
     if (id) {
       this.setState({
@@ -137,6 +141,7 @@ export default class App extends React.Component {
       });
     }
   }
+
   postNewQuestion(e) {
     e.preventDefault();
     $.post('/questions', {
@@ -148,6 +153,7 @@ export default class App extends React.Component {
     });
     this.setState({ newQuestionInput: '' })
   }
+  
   gitHubLogin() {
     $.get('/auth/github', (response) => {
       console.log(response);
