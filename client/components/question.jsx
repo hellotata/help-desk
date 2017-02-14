@@ -6,14 +6,14 @@ export default class Question extends React.Component {
   }
   render() {
     return (
-      <div className="question" onClick={this.props.setSelectedQuestionChat.bind(null, this.props.id)}>
+      <div className="question list-group-item" onClick={this.props.setSelectedQuestionChat.bind(null, this.props.id)}>
         <div className="question-header">
-          <span className="asker">{this.props.userName}</span>
-          <span className="question-time">{this.props.created_at}</span>
+          <h6 className="asker">{this.props.userName} 
+          <small className="question-time"> at {this.props.created_at}</small></h6>
         </div>
-        <div className="user-question">
-          <p>{this.props.question}</p>
-        </div>
+        <p className="user-question">
+          {this.props.question}
+        </p>
       </div>
     );
   }

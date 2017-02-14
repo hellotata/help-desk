@@ -30,19 +30,15 @@ export default class QuestionWindow extends React.Component {
         }
         return (
           <div className="questions-window">
-            <div>
-              <center><h1>QUESTIONS</h1></center>
-            </div>
-            <div className="questions-body">
+            <h4>Questions</h4>
+            <div className="questions-body list-group">
               {questions}
             </div>
-            <div>
               <NewQuestion
                 newQuestionInputHandler={this.props.newQuestionInputHandler}
                 newQuestionInput={this.props.newQuestionInput}
                 postNewQuestion={this.props.postNewQuestion}
               />
-            </div>
           </div>
         )
     }
