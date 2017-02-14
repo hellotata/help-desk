@@ -11,6 +11,14 @@ const User = connection.define('users', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  team: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  privileges: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
 }, {
   hooks: {
     afterValidate: (user) => {

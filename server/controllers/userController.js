@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
+const session = require('client-sessions');
 
 function getUsers(req, res) {
   User.findAll({
@@ -27,6 +28,7 @@ function verifyUser(req, res) {
   User.findOne({ where: {username: req.body.username}}).then((result) => {
     console.log('result is ', result)
     if(result !== null && bcrypt.compareSync(req.body.password, result.password)) {
+        req.session.user = req.body.username;
         res.cookie('user', req.body.username) //add sessions
         res.json({status: 'success', username: req.body.username});
     } else {
