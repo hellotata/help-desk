@@ -60,6 +60,8 @@ export default class App extends React.Component {
         event.preventDefault();
         var username = document.logIn.username.value
         var password = document.logIn.password.value
+        console.log(username);
+        console.log(password);
         $.ajax({
           url: '/login/',
           type: 'POST',
@@ -74,7 +76,7 @@ export default class App extends React.Component {
           }
         })
 
-      };
+    };
 
   getQuestions() {
     $.get('/questions', (response) => {
@@ -157,7 +159,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Router history={browserHistory}>
+      /*<Router history={browserHistory}>
         <Route path="/" component={() => <Login handleLogIn = {this.handleLogIn} />} />
         <Route path="/signup" component={() => <Signup handleSignUp = {this.handleSignUp} />} />
         <Route path="/main_page" component={() => <MainPage
@@ -175,7 +177,24 @@ export default class App extends React.Component {
           newQuestionInput={this.newQuestionInput}
           newQuestionInputHandler={this.newQuestionInputHandler}
         />} />
-      </Router>
+      </Router>*/
+      <div>{React.cloneElement(this.props.children, {
+        handleLogIn: this.handleLogIn,
+        handleSignUp: this.handleSignUp,
+        questions: this.state.questions,
+          getQuestions: this.getQuestions,
+          getMessages: this.getMessages,
+          userName: this.state.userName,
+          chatMessages: this.state.selectedQuestionChat,
+          setSelectedQuestionChat: this.setSelectedQuestionChat,
+          selectedQuestionId: this.state.selectedQuestionId,
+          chatInputHandler: this.chatInputHandler,
+          chatInput: this.state.chatInput,
+          postMessage: this.postMessage,
+          postNewQuestion: this.postNewQuestion,
+          newQuestionInput: this.newQuestionInput,
+          newQuestionInputHandler: this.newQuestionInputHandler
+        })}</div>
     );
   }
 }
