@@ -17,10 +17,10 @@ const Message = connection.define('messages', {
 });
 
 Message.sync(
-  // {
-  //   // remove when tables solidified
-  //   force: true,
-  // }
+  {
+    // remove when tables solidified
+    // force: true,
+  }
 );
 
 module.exports = Message;

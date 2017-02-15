@@ -21,10 +21,10 @@ const Question = connection.define('questions', {
 });
 
 Question.sync(
-  // {
-  //   // remove when tables solidified
-  //   force: true,
-  // }
+  {
+    // remove when tables solidified
+    // force: true,
+  }
 );
 
 module.exports = Question;

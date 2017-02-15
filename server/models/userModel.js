@@ -13,11 +13,11 @@ const User = connection.define('users', {
   },
   team: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   privileges: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 }, {
   hooks: {
@@ -28,10 +28,10 @@ const User = connection.define('users', {
 });
 
 User.sync(
-  // // add to delete ALL info, remove when tables solidified
-  // {
-  //   force: true,
-  // }
+  // add to delete ALL info, remove when tables solidified
+  {
+    // force: true,
+  }
 );
 
 module.exports = User;
