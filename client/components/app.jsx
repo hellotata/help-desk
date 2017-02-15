@@ -59,6 +59,7 @@ export default class App extends React.Component {
             'Content-Type': 'application/json',
           })
         }).then((res) => {
+          console.log(res);
           return res.json();
         }).then((res) => {
           if(res.status === 200) {
