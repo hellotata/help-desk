@@ -8,7 +8,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const request = require('request')
 const qs = require('querystring');
 
-const api = require('./../config.js');
+const api = require('./../config/config.js');
 const github = api.github;
 const userCtrl = require('./controllers/userController.js');
 const questionCtrl = require('./controllers/questionController.js');
@@ -18,6 +18,7 @@ const bcrypt = require('bcryptjs');
 
 const app = express();
 
+// set up webpack hot reload
 if (process.env.NODE_ENV === 'development') {
   console.log('DEVELOPMENT MODE');
   console.log('WILL HOT RELOAD CHANGES');
@@ -34,25 +35,18 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
-app.use(cookieParser());
+// read cookies (needed for auth)
+app.use(cookieParser()); 
+
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+// get information from html forms
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
 
-app.get('/users', userCtrl.getUsers);
-app.get('/questions', questionCtrl.getQuestions);
-app.get('/messages', messageCtrl.getMessages);
-
-app.post('/users', userCtrl.addUser);
-app.post('/questions', questionCtrl.addQuestion);
-app.post('/messages', messageCtrl.addMessage);
-
-app.post('/signup', userCtrl.addUser);
-// app.post('/login', userCtrl.verifyUser);
-
+// required for passport
 passport.use(new LocalStrategy(
     (username, password, cb) => {
         console.log('invoking strategy');
@@ -82,6 +76,20 @@ app.post('/login',
         console.log('check response send');
         res.json({status: 200});
     });
+
+// routes ======================================================================
+app.get('/users', userCtrl.getUsers);
+app.get('/questions', questionCtrl.getQuestions);
+app.get('/messages', messageCtrl.getMessages);
+
+app.post('/users', userCtrl.addUser);
+app.post('/questions', questionCtrl.addQuestion);
+app.post('/messages', messageCtrl.addMessage);
+
+app.post('/signup', userCtrl.addUser);
+// app.post('/login', userCtrl.verifyUser);
+
+
 // app.get('/auth/github', (req, res) => {  //first step in button request
 //     console.log('step 0');
 //     var url = 'https://github.com/login/oauth/authorize?' + 
@@ -146,8 +154,7 @@ app.post('/login',
 //     })
 // })
 
-
-
+// launch ======================================================================
 app.listen(3000);
 
 module.exports = app;
