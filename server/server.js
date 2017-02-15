@@ -80,7 +80,7 @@ app.post('/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     (req, res) => {
         console.log('check response send');
-        res.json({status: 200});
+        res.status(200).json({userId: req.user.dataValues.id});
     });
 // app.get('/auth/github', (req, res) => {  //first step in button request
 //     console.log('step 0');

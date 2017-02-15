@@ -41,10 +41,8 @@ export default class App extends React.Component {
       }).then((res) => {
         return res.json();
       }).then((res) => {
-        if(res.status === 'success') {
-          this.setState({userName: res.username, userId: res.id })
+          this.setState({userName: res.username, userId: res.userId })
           browserHistory.push('/main_page');
-        }
       })
   }
 
@@ -59,13 +57,11 @@ export default class App extends React.Component {
             'Content-Type': 'application/json',
           })
         }).then((res) => {
-          console.log(res);
-          return res.json();
+            return res.json();
         }).then((res) => {
-          if(res.status === 200) {
-            this.setState({userName: res.username, userId: res.userId })
-            browserHistory.push('/main_page');
-          }
+            this.setState({userName: res.username, userId: res.userId }, () => {
+              browserHistory.push('/main_page');
+            })
         })
     };
 
@@ -115,7 +111,6 @@ export default class App extends React.Component {
   // take out id params
   postMessage(id, event) {
     event.preventDefault();
-    console.log('id is ', id);
     fetch('/messages', {
       method: 'POST',
       body: JSON.stringify({
@@ -155,7 +150,7 @@ export default class App extends React.Component {
 
   postNewQuestion(e) {
     e.preventDefault();
-    console.log('id', this.state.userId);
+    console.log('id HELLO', this.state.userId);
     console.log('state', this.state.newQuestionInput);
     fetch('/questions', {
       method: 'POST',
@@ -172,13 +167,13 @@ export default class App extends React.Component {
     this.setState({ newQuestionInput: '' })
   }
   
-  gitHubLogin() {
-    fetch('/auth/github', {
-      method: 'GET',
-    }).then(() => {
-      browserHistory.push('/main_page');
-    })
-  }
+  // gitHubLogin() {
+  //   fetch('/auth/github', {
+  //     method: 'GET',
+  //   }).then(() => {
+  //     browserHistory.push('/main_page');
+  //   })
+  // }
 
   render() {
     return (
