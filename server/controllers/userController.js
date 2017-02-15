@@ -17,9 +17,10 @@ function addUser(req, res) {
       password: req.body.password,
       team: '',
       privileges: 'admin'
+    }).then((user) => {
+      res.cookie('user', req.body.username) //need to make this more secure
+      res.status(200).json({ username: req.body.username, userId: user.dataValues.id }); //need to add sessions
     });
-    res.cookie('user', req.body.username) //need to make this more secure
-    res.json({status: 'success', username: req.body.username}); //need to add sessions
   }
 }
     
