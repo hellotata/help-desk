@@ -26,6 +26,7 @@ export default class App extends React.Component {
     this.postNewQuestion = this.postNewQuestion.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handleSignUp (e) {
@@ -64,6 +65,17 @@ export default class App extends React.Component {
             })
         })
     };
+
+  handleLogOut (e) {
+    e.preventDefault();
+    fetch('/logout', {
+      method: 'GET',
+    }).then((res) => {
+      this.setState({ username: null, userId: null }, () => {
+        browserHistory.push('/');
+      })
+    })
+  };
 
   getQuestions() {
     fetch('/questions', {
@@ -179,6 +191,7 @@ export default class App extends React.Component {
     return (
       <div>{React.cloneElement(this.props.children, {
         handleLogIn: this.handleLogIn,
+        handleLogOut: this.handleLogOut,
         handleSignUp: this.handleSignUp,
         questions: this.state.questions,
         getQuestions: this.getQuestions,

@@ -2,6 +2,7 @@ import React from 'react';
 import ChatWindow from './chat-window.jsx';
 import ImageWindow from './image-window.jsx'
 import QuestionsWindow from './questions-window.jsx';
+import Header from './main-header.jsx';
 import {router} from 'react-router';
 
 export default class MainPage extends React.Component {
@@ -13,6 +14,7 @@ export default class MainPage extends React.Component {
     render() {
         return (
             <div className="container">
+                <Header handleLogOut={this.props.handleLogOut}/>
                 <div className="row">
                     <div className="col-sm-4">
                         <QuestionsWindow
