@@ -10,6 +10,7 @@ const github = api.github;
 const userCtrl = require('./controllers/userController.js');
 const questionCtrl = require('./controllers/questionController.js');
 const messageCtrl = require('./controllers/messageController.js');
+const teamCtrl = require('./controllers/teamController.js');
 
 const app = express();
 
