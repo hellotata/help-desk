@@ -3,6 +3,9 @@ const Models = require('../models/models');
 function getQuestions(req, res) {
   Models.Question.findAll({
     order: '"createdAt" DESC',
+    include: [{
+        model: Models.User
+    }]
   }).then(questions => res.send(questions));
 }
 
