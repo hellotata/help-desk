@@ -39,4 +39,18 @@ function verifyUser(req, res) {
   });
 }
 
-module.exports = {addUser, verifyUser, getUsers};
+function findByUsername (username, cb) {
+  User.findOne({ where: {username: username}})
+    .then((result) => {
+      return cb(null, result);
+    });
+}
+
+function findById (id, cb) {
+  User.findOne({ where: {id: id}})
+    .then((result) => {
+      return cb(null, result);
+    })
+}
+
+module.exports = {addUser, verifyUser, getUsers, findByUsername, findById};
