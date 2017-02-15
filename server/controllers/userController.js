@@ -39,14 +39,14 @@ function verifyUser(req, res) {
 }
 
 function findByUsername (username, cb) {
-  User.findOne({ where: {username: username}})
+  Models.User.findOne({ where: {username: username}})
     .then((result) => {
       return cb(null, result);
     });
 }
 
 function findById (id, cb) {
-  User.findOne({ where: {id: id}})
+  Models.User.findOne({ where: {id: id}})
     .then((result) => {
       return cb(null, result);
     })
