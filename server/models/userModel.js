@@ -6,12 +6,12 @@ const User = connection.define('users', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
+    validate: {
+      is: /^[a-z0-9\_\-]+$/i
+    }
   },
   password: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  team: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -26,12 +26,5 @@ const User = connection.define('users', {
     },
   },
 });
-
-User.sync(
-  // add to delete ALL info, remove when tables solidified
-  {
-    // force: true,
-  }
-);
 
 module.exports = User;

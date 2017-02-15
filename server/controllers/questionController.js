@@ -1,15 +1,15 @@
-const Question = require('../models/questionModel');
+const Models = require('../models/models');
 
 function getQuestions(req, res) {
-  Question.findAll({
+  Models.Question.findAll({
     order: '"createdAt" DESC',
   }).then(questions => res.send(questions));
 }
 
 function addQuestion(req, res) {
-  Question.create({
-    question: req.body.question,
-    asker: req.body.asker,
+  Models.Question.create({
+    userId: req.body.userId,
+    question: req.body.question
   })
   .then(() => res.send('Question added'))
   .catch(err => res.send(err));

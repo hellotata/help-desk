@@ -1,9 +1,8 @@
-const User = require('../models/userModel');
+const Models = require('../models/models');
 const bcrypt = require('bcryptjs');
 
-
 function getUsers(req, res) {
-  User.findAll({
+  Models.User.findAll({
     order: '"username" DESC',
   }).then(questions => res.send(questions));
 }
@@ -13,7 +12,7 @@ function addUser(req, res) {
   
   //need error for if user already exists
   if(req.body.username && req.body.password) {
-    User.create({
+    Models.User.create({
       username: req.body.username,
       password: req.body.password,
       team: '',
@@ -27,11 +26,11 @@ function addUser(req, res) {
 
 function verifyUser(req, res) {
   console.log('in verify')
-  User.findOne({ where: {username: req.body.username}}).then((result) => {
+  Models.User.findOne({ where: {username: req.body.username}}).then((result) => {
     console.log('result is ', result)
     if(result !== null && bcrypt.compareSync(req.body.password, result.password)) {
         res.cookie('user', req.body.username) //add sessions
-        res.json({status: 'success', username: req.body.username});
+        res.json({status: 'success', userId: result.dataValues.id, username: req.body.username});
     } else {
       // take out, send error status, print message in front end
       res.redirect('/');
