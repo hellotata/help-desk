@@ -13,14 +13,7 @@ const Message = connection.define('messages', {
   message: {
     type: Sequelize.TEXT,
     allowNull: false,
-  },
+  }
 });
-
-Message.sync(
-  // {
-  //   // remove when tables solidified
-  //   force: true,
-  // }
-);
 
 module.exports = Message;

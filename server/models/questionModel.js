@@ -10,21 +10,10 @@ const Question = connection.define('questions', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  // what is this? do we need this?
-  file: {
-    type: Sequelize.TEXT,
-  },
   answered: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
-  },
+  }
 });
-
-Question.sync(
-  // {
-  //   // remove when tables solidified
-  //   force: true,
-  // }
-);
 
 module.exports = Question;

@@ -1,9 +1,9 @@
-const User = require('../models/userModel');
+const Models = require('../models/models');
 const bcrypt = require('bcryptjs');
-const session = require('client-sessions');
+// const session = require('client-sessions');
 
 function getUsers(req, res) {
-  User.findAll({
+  Models.User.findAll({
     order: '"username" DESC',
   }).then(questions => res.send(questions));
 }
@@ -13,7 +13,7 @@ function addUser(req, res) {
   
   //need error for if user already exists
   if(req.body.username && req.body.password) {
-    User.create({
+    Models.User.create({
       username: req.body.username,
       password: req.body.password,
     });
@@ -25,10 +25,10 @@ function addUser(req, res) {
 
 function verifyUser(req, res) {
   console.log('in verify')
-  User.findOne({ where: {username: req.body.username}}).then((result) => {
+  Models.User.findOne({ where: {username: req.body.username}}).then((result) => {
     console.log('result is ', result)
     if(result !== null && bcrypt.compareSync(req.body.password, result.password)) {
-        req.session.user = req.body.username;
+        // req.session.user = req.body.username;
         res.cookie('user', req.body.username) //add sessions
         res.json({status: 'success', username: req.body.username});
     } else {

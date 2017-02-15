@@ -11,10 +11,6 @@ const User = connection.define('users', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  team: {
-    type: Sequelize.STRING,
-    allowNull: true,
-  },
   privileges: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -26,12 +22,5 @@ const User = connection.define('users', {
     },
   },
 });
-
-User.sync(
-  // // add to delete ALL info, remove when tables solidified
-  // {
-  //   force: true,
-  // }
-);
 
 module.exports = User;
