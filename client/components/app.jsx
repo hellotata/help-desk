@@ -83,11 +83,12 @@ export default class App extends React.Component {
     }).then((res) => {
       return res.json();
     }).then((res) => {
+      console.log('the question res', res);
       const newState = { questions: {} };
       res.forEach((question) => {
         newState.questions[question.id] = {
           id: question.id,
-          userName: question.asker,
+          userName: question.user.username,
           question: question.question,
           created_at: question.createdAt,
           chatMessages: [],
@@ -104,6 +105,7 @@ export default class App extends React.Component {
       return res.json();
     }).then((res) => {
       const temp = this.state.questions;
+      console.log('TEMP', temp);
       res.forEach((message) => {
         if (temp.hasOwnProperty(message.questionId)) {
           temp[message.questionId].chatMessages.push({
@@ -162,8 +164,6 @@ export default class App extends React.Component {
 
   postNewQuestion(e) {
     e.preventDefault();
-    console.log('id HELLO', this.state.userId);
-    console.log('state', this.state.newQuestionInput);
     fetch('/questions', {
       method: 'POST',
       body: JSON.stringify({
