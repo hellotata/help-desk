@@ -13,8 +13,10 @@ export default class MainPage extends React.Component {
     }
     render() {
         return (
+            <div>
+            <Header handleLogOut={this.props.handleLogOut}/>
             <div className="container">
-                <Header handleLogOut={this.props.handleLogOut}/>
+                
                 <div className="row">
                     <div className="col-sm-4">
                         <QuestionsWindow
@@ -35,9 +37,11 @@ export default class MainPage extends React.Component {
                             chatInputHandler={this.props.chatInputHandler}
                             chatInput={this.props.chatInput}
                             postMessage={this.props.postMessage}
+                            selectedQuestionId={this.props.selectedQuestionId}
                         />
                     </div>
                 </div>
+            </div>
             </div>
         )
     }
