@@ -43,7 +43,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(session({ secret: '4DF52FC7DA163CD159484A65D3927' })); // session secret
+app.use(session({
+    secret: '4DF52FC7DA163CD159484A65D3927',
+    resave: true,
+    saveUninitialized: true
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
