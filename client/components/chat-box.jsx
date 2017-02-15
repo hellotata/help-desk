@@ -27,9 +27,31 @@ export default class ChatBox extends React.Component {
                     created_at={message.created_at}/>);
             }
         })
+        let form = '';
+        if (this.props.selectedQuestionId) {
+            form = (
+              <form 
+                onSubmit={this.props.postMessage.bind(null, this.props.id)}
+                className="input-group">
+                <input
+                  type='text'
+                  className="form-control"
+                  placeholder="Write something..."
+                  value={this.props.chatInput}
+                  onChange={this.props.chatInputHandler} />
+                <span className="input-group-btn">
+                  <button
+                      className="btn btn-default">
+                      Submit
+                  </button>
+                </span>
+              </form>                
+            );
+        }
         return (
             <div>
-                {messages}
+              {messages}
+              {form}
             </div>
         )
     }

@@ -12,6 +12,17 @@ export default class MainPage extends React.Component {
     }
     render() {
         return (
+            <div>
+            <nav className="navbar navbar-inverse navbar-static-top">
+                <div className="container">
+                    <div className="navbar-header">
+                        <a className="navbar-brand" href="#">Usizo</a>
+                    </div>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><a href="#">Log Out</a></li>
+                    </ul>
+                </div>
+            </nav>
             <div className="container">
                 <div className="row">
                     <div className="col-sm-4">
@@ -33,9 +44,11 @@ export default class MainPage extends React.Component {
                             chatInputHandler={this.props.chatInputHandler}
                             chatInput={this.props.chatInput}
                             postMessage={this.props.postMessage}
+                            selectedQuestionId={this.props.selectedQuestionId}
                         />
                     </div>
                 </div>
+            </div>
             </div>
         )
     }
