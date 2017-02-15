@@ -17,7 +17,7 @@ const User = connection.define('users', {
   },
   privileges: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
 }, {
   hooks: {
