@@ -8,8 +8,8 @@ function getQuestions(req, res) {
 
 function addQuestion(req, res) {
   Models.Question.create({
-    question: req.body.question,
-    asker: req.body.asker,
+    userId: req.body.userId,
+    question: req.body.question
   })
   .then(() => res.send('Question added'))
   .catch(err => res.send(err));

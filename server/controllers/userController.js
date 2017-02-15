@@ -30,7 +30,7 @@ function verifyUser(req, res) {
     if(result !== null && bcrypt.compareSync(req.body.password, result.password)) {
         // req.session.user = req.body.username;
         res.cookie('user', req.body.username) //add sessions
-        res.json({status: 'success', username: req.body.username});
+        res.json({status: 'success', userId: result.dataValues.id, username: req.body.username});
     } else {
       // take out, send error status, print message in front end
       res.redirect('/');

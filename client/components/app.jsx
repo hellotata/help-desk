@@ -8,6 +8,7 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      userId: '',
       userName: 'miketyson001',
       questions: {},
       selectedQuestionId: '',
@@ -41,7 +42,7 @@ export default class App extends React.Component {
         return res.json();
       }).then((res) => {
         if(res.status === 'success') {
-          this.setState({userName: res.username})
+          this.setState({userName: res.username, userId: res.id })
           browserHistory.push('/main_page');
         }
       })
@@ -61,7 +62,7 @@ export default class App extends React.Component {
           return res.json();
         }).then((res) => {
           if(res.status === 'success') {
-            this.setState({userName: res.username})
+            this.setState({ userName: res.username, userId: res.useId })
             browserHistory.push('/main_page');
           }
         })
@@ -110,12 +111,15 @@ export default class App extends React.Component {
     })
   }
 
+  // take out id params
   postMessage(id, event) {
     event.preventDefault();
+    console.log('id is ', id);
     fetch('/messages', {
       method: 'POST',
       body: JSON.stringify({
-        questionid: id,
+        questionId: this.state.selectedQuestionId,
+        userId: this.state.userId,
         username: this.state.userName,
         message: this.state.chatInput
       }),
@@ -150,10 +154,12 @@ export default class App extends React.Component {
 
   postNewQuestion(e) {
     e.preventDefault();
+    console.log('id', this.state.userId);
+    console.log('state', this.state.newQuestionInput);
     fetch('/questions', {
       method: 'POST',
       body: JSON.stringify({
-        asker: this.state.userName,
+        userId: this.state.userId,
         question: this.state.newQuestionInput
       }),
       headers: new Headers({

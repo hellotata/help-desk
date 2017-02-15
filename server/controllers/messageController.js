@@ -8,7 +8,8 @@ function getMessages(req, res) {
 
 function addMessage(req, res) {
   Models.Message.create({
-    questionid: req.body.questionid,
+    questionId: req.body.questionId,
+    userId: req.body.userId,
     username: req.body.username,
     message: req.body.message,
   })

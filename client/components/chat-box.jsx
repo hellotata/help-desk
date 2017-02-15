@@ -1,7 +1,7 @@
 import React from 'react';
 import ChatMsg from './chat-msg.jsx';
 
-export default class ChatWindow extends React.Component {
+export default class ChatBox extends React.Component {
     constructor(props) {
         super(props);
     }
