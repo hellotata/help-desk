@@ -4,7 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 const request = require('request')
 const qs = require('querystring');
 
@@ -14,7 +14,6 @@ const userCtrl = require('./controllers/userController.js');
 const questionCtrl = require('./controllers/questionController.js');
 const messageCtrl = require('./controllers/messageController.js');
 const teamCtrl = require('./controllers/teamController.js');
-const bcrypt = require('bcryptjs');
 
 const app = express();
 
@@ -35,40 +34,20 @@ if (process.env.NODE_ENV === 'development') {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 
+require('./../config/passport')(passport); // pass passport for configuration
+
 // read cookies (needed for auth)
 app.use(cookieParser()); 
-
-app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // get information from html forms
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({ secret: '4DF52FC7DA163CD159484A65D3927' })); // session secret
 app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
-// required for passport
-passport.use(new LocalStrategy(
-    (username, password, cb) => {
-        console.log('invoking strategy');
-        userCtrl.findByUsername(username, (err, user) => {
-            if (err) { return cb(err); }
-            if (!user) { return cb(null, false); }
-            if (!bcrypt.compareSync(password, user.password)) { return cb(null, false); }
-            console.log('user verified');
-            return cb(null, user);
-        });
-}));
-
-passport.serializeUser((user, cb) => {
-    cb(null, user.id);
-});
-
-passport.deserializeUser((id, cb) => {
-    userCtrl.findById(id, (err, user) => {
-        if (err) { return cb(err); }
-        cb(null, user);
-    });
-});
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.post('/login', 
     passport.authenticate('local', { failureRedirect: '/login' }),
