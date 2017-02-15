@@ -7,7 +7,9 @@ const connection = require('../pgConnection');
 Team.hasMany(User);
 User.hasMany(Question);
 Question.hasMany(Message);
+Question.belongsTo(User);
 User.hasMany(Message);
+Message.belongsTo(Question);
 
 connection.sync({
     // force: true

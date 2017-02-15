@@ -26,6 +26,7 @@ export default class App extends React.Component {
     this.postNewQuestion = this.postNewQuestion.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handleSignUp (e) {
@@ -65,17 +66,29 @@ export default class App extends React.Component {
         })
     };
 
+  handleLogOut (e) {
+    e.preventDefault();
+    fetch('/logout', {
+      method: 'GET',
+    }).then((res) => {
+      this.setState({ username: null, userId: null }, () => {
+        browserHistory.push('/');
+      })
+    })
+  };
+
   getQuestions() {
     fetch('/questions', {
       method: 'GET'
     }).then((res) => {
       return res.json();
     }).then((res) => {
+      console.log('the question res', res);
       const newState = { questions: {} };
       res.forEach((question) => {
         newState.questions[question.id] = {
           id: question.id,
-          userName: question.asker,
+          userName: question.user.username,
           question: question.question,
           created_at: question.createdAt,
           chatMessages: [],
@@ -92,6 +105,7 @@ export default class App extends React.Component {
       return res.json();
     }).then((res) => {
       const temp = this.state.questions;
+      console.log('TEMP', temp);
       res.forEach((message) => {
         if (temp.hasOwnProperty(message.questionId)) {
           temp[message.questionId].chatMessages.push({
@@ -150,8 +164,6 @@ export default class App extends React.Component {
 
   postNewQuestion(e) {
     e.preventDefault();
-    console.log('id HELLO', this.state.userId);
-    console.log('state', this.state.newQuestionInput);
     fetch('/questions', {
       method: 'POST',
       body: JSON.stringify({
@@ -179,6 +191,7 @@ export default class App extends React.Component {
     return (
       <div>{React.cloneElement(this.props.children, {
         handleLogIn: this.handleLogIn,
+        handleLogOut: this.handleLogOut,
         handleSignUp: this.handleSignUp,
         questions: this.state.questions,
         getQuestions: this.getQuestions,
