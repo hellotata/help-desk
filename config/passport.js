@@ -24,7 +24,7 @@ module.exports = function(passport) {
     // LOCAL LOGIN
     passport.use(new LocalStrategy(
         (username, password, cb) => {
-            console.log('invoking strategy');
+            // console.log('invoking strategy');
             userCtrl.findByUsername(username, (err, user) => {
                 if (err) { return cb(err); }
                 if (!user) { return cb(null, false); }

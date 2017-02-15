@@ -48,6 +48,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 })); // session secret
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -72,6 +73,10 @@ app.post('/login',
         res.status(200).json({userId: req.user.dataValues.id});
     });
 
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
 // app.get('/auth/github', (req, res) => {  //first step in button request
 //     console.log('step 0');
 //     var url = 'https://github.com/login/oauth/authorize?' + 
