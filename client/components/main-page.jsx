@@ -14,18 +14,9 @@ export default class MainPage extends React.Component {
     render() {
         return (
             <div>
-            <nav className="navbar navbar-inverse navbar-static-top">
-                <div className="container">
-                    <div className="navbar-header">
-                        <a className="navbar-brand" href="#">Usizo</a>
-                    </div>
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#">Log Out</a></li>
-                    </ul>
-                </div>
-            </nav>
+            <Header handleLogOut={this.props.handleLogOut}/>
             <div className="container">
-                <Header handleLogOut={this.props.handleLogOut}/>
+                
                 <div className="row">
                     <div className="col-sm-4">
                         <QuestionsWindow
