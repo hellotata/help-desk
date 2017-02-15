@@ -60,7 +60,7 @@ export default class App extends React.Component {
         }).then((res) => {
           return res.json();
         }).then((res) => {
-          if(res.status === 'success') {
+          if(res.status === 200) {
             this.setState({userName: res.username})
             browserHistory.push('/main_page');
           }
