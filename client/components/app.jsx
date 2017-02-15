@@ -93,8 +93,8 @@ export default class App extends React.Component {
     }).then((res) => {
       const temp = this.state.questions;
       res.forEach((message) => {
-        if (temp.hasOwnProperty(message.questionid)) {
-          temp[message.questionid].chatMessages.push({
+        if (temp.hasOwnProperty(message.questionId)) {
+          temp[message.questionId].chatMessages.push({
             userName: message.username,
             message: message.message,
             created_at: message.createdAt
@@ -167,13 +167,13 @@ export default class App extends React.Component {
     this.setState({ newQuestionInput: '' })
   }
   
-  // gitHubLogin() {
-  //   fetch('/auth/github', {
-  //     method: 'GET',
-  //   }).then(() => {
-  //     browserHistory.push('/main_page');
-  //   })
-  // }
+  gitHubLogin() {
+    fetch('/auth/github', {
+      method: 'GET',
+    }).then(() => {
+      browserHistory.push('/main_page');
+    })
+  }
 
   render() {
     return (

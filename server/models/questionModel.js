@@ -6,9 +6,13 @@ const Question = connection.define('questions', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  asker: {
-    type: Sequelize.STRING,
-    allowNull: false,
+  // asker: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  // },
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
   answered: {
     type: Sequelize.BOOLEAN,

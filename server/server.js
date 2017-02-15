@@ -53,13 +53,6 @@ app.use(passport.session()); // persistent login sessions
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.post('/login', 
-    passport.authenticate('local', { failureRedirect: '/login' }),
-    (req, res) => {
-        console.log('check response send');
-        res.json({status: 200});
-    });
-
 // routes ======================================================================
 app.get('/users', userCtrl.getUsers);
 app.get('/questions', questionCtrl.getQuestions);
