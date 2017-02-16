@@ -10,6 +10,7 @@ const Header = (props) => {
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="#" onClick={props.handleLogOut}>Log Out</a></li>
             </ul>
+            <p className="navbar-text navbar-right"><em>Signed in as {props.userName}</em></p>
         </div>
     </nav>
   );

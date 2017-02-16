@@ -6,7 +6,9 @@ function getQuestions(req, res) {
     include: [{
         model: Models.User
     }]
-  }).then(questions => res.send(questions));
+  }).then(questions => {
+    res.send(questions);
+  });
 }
 
 function addQuestion(req, res) {

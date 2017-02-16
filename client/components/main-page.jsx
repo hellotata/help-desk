@@ -14,7 +14,7 @@ export default class MainPage extends React.Component {
     render() {
         return (
             <div>
-            <Header handleLogOut={this.props.handleLogOut}/>
+            <Header handleLogOut={this.props.handleLogOut} userName={this.props.userName}/>
             <div className="container">
                 
                 <div className="row">

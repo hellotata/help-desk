@@ -9,7 +9,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       userId: '',
-      userName: 'miketyson001',
+      userName: '',
       questions: {},
       selectedQuestionId: '',
       selectedQuestionChat: [],
@@ -60,7 +60,11 @@ export default class App extends React.Component {
         }).then((res) => {
             return res.json();
         }).then((res) => {
-            this.setState({userName: res.username, userId: res.userId }, () => {
+            console.log('login res', res);
+            this.setState({
+              userName: username,
+              userId: res.userId
+            }, () => {
               browserHistory.push('/main_page');
             })
         })
@@ -95,6 +99,7 @@ export default class App extends React.Component {
         }
       })
       this.setState(newState);
+      console.log("CURRSTATE:",this.state);
     })
   }
 
