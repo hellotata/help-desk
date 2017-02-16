@@ -8,7 +8,7 @@ export default class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.props.getQuestions();
-        this.props.getMessages();
+        // this.props.getMessages();
     }
     render() {
         return (

@@ -5,6 +5,9 @@ function getQuestions(req, res) {
     order: '"createdAt" DESC',
     include: [{
         model: Models.User
+    },
+    {
+        model: Models.Message
     }]
   }).then(questions => res.send(questions));
 }

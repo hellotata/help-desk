@@ -1,17 +1,16 @@
 const Models = require('../models/models');
 
 function getMessages(req, res) {
+  console.log('the REQUEST', req);
   Models.Message.findAll({
     order: '"createdAt" ASC',
   }).then(messages => {
-    // clean this later
-    console.log('message', messages);
     res.send(messages);
   })
 }
 
 function addMessage(req, res) {
-  console.log('the req', req);
+  // console.log('the req', req);
   Models.Message.create({
     questionId: req.body.questionId,
     userId: req.body.userId,
