@@ -5,7 +5,7 @@ const Header = (props) => {
     <nav className="navbar navbar-inverse navbar-static-top">
         <div className="container">
             <div className="navbar-header">
-                <a className="navbar-brand" href="#">Usizo</a>
+                <a className="navbar-brand" href="#">Usizo <small>help desk</small></a>
             </div>
             <ul className="nav navbar-nav navbar-right">
                 <li><a href="#" onClick={props.handleLogOut}>Log Out</a></li>

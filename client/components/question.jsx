@@ -13,9 +13,17 @@ export default class Question extends React.Component {
           <h6 className="asker">{this.props.userName} 
           <small className="question-time"> at {this.props.created_at}</small></h6>
         </div>
-        <p className="user-question">
-          {this.props.question}
-        </p>
+        <div className="row">
+          <div className="col-xs-9">
+            <p className="user-question">
+              {this.props.question}
+            </p>
+          </div>
+          <div className="col-xs-3">
+            <span className="label label-primary">Open</span>
+          </div>
+        </div>
+        
       </a>
     );
   }
