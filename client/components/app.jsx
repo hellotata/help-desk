@@ -167,7 +167,7 @@ export default class App extends React.Component {
       console.log('id', id);
       console.log('messages', this.state.questions[id]);
       this.setState({
-        selectedQuestionChat: this.state.questions[id].chatMessages,
+        // selectedQuestionChat: this.state.questions[id].chatMessages,
         selectedQuestionId: id,
       });
     }
@@ -186,6 +186,7 @@ export default class App extends React.Component {
       })
     }).then(() => {
       this.getQuestions();
+      this.getMessages();
     })
     this.setState({ newQuestionInput: '' })
   }
