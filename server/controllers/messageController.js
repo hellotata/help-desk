@@ -10,7 +10,6 @@ function getMessages(req, res) {
 }
 
 function addMessage(req, res) {
-  // console.log('the req', req);
   Models.Message.create({
     questionId: req.body.questionId,
     userId: req.body.userId,
