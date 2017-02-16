@@ -5,7 +5,6 @@ const mocha = require('mocha');
 const request = require('supertest');
 
 
-
   describe('loading express', () => {
     let app, httpServer;
     beforeEach(() => {
@@ -31,4 +30,3 @@ const request = require('supertest');
         .expect(200, done);
     });
   });
-
