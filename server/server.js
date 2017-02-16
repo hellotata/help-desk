@@ -78,7 +78,7 @@ app.post('/login',
     });
 
 app.get('/logout', (req, res) => {
-    // console.log('looging out from server', req.session);
+    console.log('looging out from server', req.session);
     req.logOut();
     req.session.destroy();
     // console.log('after destroy: ', req.session);
@@ -163,7 +163,7 @@ app.get('*', (req, res) => {
 });
 
 // launch ======================================================================
-let server = app.listen(3000, () => {
+app.listen(3000, () => {
     console.log("Server listening on port 3000");
 });
 

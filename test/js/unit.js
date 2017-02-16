@@ -11,23 +11,23 @@ describe('loading express', () => {
   beforeEach(() => {
     app = require('./../../server/server.js');
     httpServer = require('http').createServer(app);
-    httpServer.listen(3001);
+    httpServer.listen('3001');
   });
   afterEach((done) => {
     httpServer.close(done);
-    console.log('after each');
   });
-  it('responds to /', () => {
+
+  it('responds to /', (done) => {
     request(app)
-      .get('/nada')
-      .expect(200);
+      .get('/')
+      .expect(200, done);
   });
 
-  it('unique ID field added', () => {
-
+  it('unique ID field added', (done) => {
+    done();
   });
 
-  it('does not overwrite first game', () => {
-
+  it('does not overwrite first game', (done) => {
+    done();
   });
 });
