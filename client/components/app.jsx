@@ -14,7 +14,7 @@ export default class App extends React.Component {
       selectedQuestionId: '',
       selectedQuestionChat: [],
       chatInput: '',
-      newQuestionInput: '',
+      newQuestionInput: ''
     };
     this.gitHubLogin = this.gitHubLogin.bind(this);
     this.getQuestions = this.getQuestions.bind(this);
@@ -87,7 +87,6 @@ export default class App extends React.Component {
     }).then((res) => {
       return res.json();
     }).then((res) => {
-      console.log('the question res', res);
       const newState = { questions: {} };
       res.forEach((question) => {
         newState.questions[question.id] = {
@@ -99,7 +98,6 @@ export default class App extends React.Component {
         }
       })
       this.setState(newState);
-      console.log("CURRSTATE:",this.state);
     })
   }
 
@@ -160,9 +158,12 @@ export default class App extends React.Component {
 
   setSelectedQuestionChat(id) {
     if (id) {
+      console.log('before', this.state);
       this.setState({
         selectedQuestionChat: this.state.questions[id].chatMessages,
         selectedQuestionId: id,
+      }, () => {
+        console.log('after, this.state');
       });
     }
   }
