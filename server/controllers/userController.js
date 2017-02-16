@@ -25,18 +25,26 @@ function addUser(req, res) {
 }
     
 
-function verifyUser(req, res) {
-  console.log('in verify')
-  Models.User.findOne({ where: {username: req.body.username}}).then((result) => {
-    console.log('result is ', result)
-    if(result !== null && bcrypt.compareSync(req.body.password, result.password)) {
-        res.cookie('user', req.body.username) //add sessions
-        res.json({status: 'success', userId: result.dataValues.id, username: req.body.username});
-    } else {
-      // take out, send error status, print message in front end
-      res.redirect('/');
-    };
-  });
+function verifyUser(req, res, next) {
+  // console.log('in verify')
+  // Models.User.findOne({ where: {username: req.body.username}}).then((result) => {
+  //   console.log('result is ', result)
+  //   if(result !== null && bcrypt.compareSync(req.body.password, result.password)) {
+  //       res.cookie('user', req.body.username) //add sessions
+  //       res.json({status: 'success', userId: result.dataValues.id, username: req.body.username});
+  //   } else {
+  //     // take out, send error status, print message in front end
+  //     res.redirect('/');
+  //   };
+  // });
+  // console.log('user: ', req.isAuthenticated());
+  if (req.isAuthenticated()) {
+    // console.log('authenticated');
+    next();
+  } else {
+    // console.log('not authenticated');
+    res.redirect('/');
+  }
 }
 
 function findByUsername (username, cb) {

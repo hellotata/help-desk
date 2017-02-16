@@ -37,16 +37,20 @@ if (process.env.NODE_ENV === 'development') {
 require('./../config/passport')(passport); // pass passport for configuration
 
 // read cookies (needed for auth)
-app.use(cookieParser()); 
+// app.use(cookieParser()); 
 
 // get information from html forms
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
+    name: 'newSession',
     secret: '4DF52FC7DA163CD159484A65D3927',
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 120 * 60 * 1000,
+    }
 })); // session secret
 
 app.use(passport.initialize());
@@ -74,8 +78,22 @@ app.post('/login',
     });
 
 app.get('/logout', (req, res) => {
-    req.logout();
+    // console.log('looging out from server', req.session);
+    req.logOut();
+    req.session.destroy();
+    // console.log('after destroy: ', req.session);
     res.redirect('/');
+});
+
+app.get('/main_page', userCtrl.verifyUser, (req, res) => {
+    console.log('verifying user', req.session);
+    if (req.session.passport.user) {
+        // console.log('found session');
+        res.status(200).sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
+    } else {
+        // console.log('no session');
+        res.redirect('/');
+    }
 });
 // app.get('/auth/github', (req, res) => {  //first step in button request
 //     console.log('step 0');
@@ -140,6 +158,9 @@ app.get('/logout', (req, res) => {
 //         res.send(body);
 //     })
 // })
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
+});
 
 // launch ======================================================================
 app.listen(3000);
