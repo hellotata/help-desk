@@ -161,13 +161,14 @@ export default class App extends React.Component {
   }
 
   setSelectedQuestionChat(id) {
+    this.getQuestions();
+    this.getMessages();
     if (id) {
-      console.log('before', this.state);
+      console.log('id', id);
+      console.log('messages', this.state.questions[id]);
       this.setState({
         selectedQuestionChat: this.state.questions[id].chatMessages,
         selectedQuestionId: id,
-      }, () => {
-        console.log('after, this.state');
       });
     }
   }
