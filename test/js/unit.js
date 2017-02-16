@@ -30,4 +30,11 @@ describe('loading express', () => {
   it('does not overwrite first game', (done) => {
     done();
   });
+  it('received json object in return', (done) => {
+    request(app)
+    .post('/messages')
+    .expect('Content-Type', 'application/json; charset=utf-8')
+    .expect(200, done);
+    // done();
+  });
 });
