@@ -1,7 +1,7 @@
 const Models = require('../models/models');
 
 function getMessages(req, res) {
-  console.log('the REQUEST', req);
+  // console.log('the REQUEST', req);
   Models.Message.findAll({
     order: '"createdAt" ASC',
   }).then(messages => {
