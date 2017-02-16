@@ -5,36 +5,28 @@ const mocha = require('mocha');
 const request = require('supertest');
 
 
-
-describe('loading express', () => {
-  let app, httpServer;
-  beforeEach(() => {
-    app = require('./../../server/server.js');
-    httpServer = require('http').createServer(app);
-    httpServer.listen('3001');
-  });
-  afterEach((done) => {
-    httpServer.close(done);
-  });
-
-  it('responds to /', (done) => {
-    request(app)
-      .get('/')
-      .expect(200, done);
-  });
-
-  it('unique ID field added', (done) => {
-    done();
+  describe('loading express', () => {
+    let app, httpServer;
+    beforeEach(() => {
+      app = require('./../../server/server.js');
+      httpServer = require('http').createServer(app);
+      httpServer.listen(3001);
+    });
+    afterEach((done) => {
+      httpServer.close(done);
+      console.log('after each');
+    });
+    it('responds to /', () => {
+      request(app)
+        .get('/nada')
+        .expect(200);
+    });
   });
 
-  it('does not overwrite first game', (done) => {
-    done();
+  describe('GET /', function() {
+    it('should return 200 OK', function(done) {
+      request(app)
+        .get('/')
+        .expect(200, done);
+    });
   });
-  it('received json object in return', (done) => {
-    request(app)
-    .post('/messages')
-    .expect('Content-Type', 'application/json; charset=utf-8')
-    .expect(200, done);
-    // done();
-  });
-});

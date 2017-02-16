@@ -11,6 +11,12 @@ export default class ChatBox extends React.Component {
   //  }
 
     render() {
+        let title;
+        if (this.props.selectedQuestionId) {
+          title = (
+            <h5>Question ID: {this.props.selectedQuestionId}</h5>
+          );
+        }
         let messages = [];
         this.props.chatMessages.forEach((message) => {
             if (this.props.userName === message.userName) {
@@ -30,26 +36,39 @@ export default class ChatBox extends React.Component {
         let form = '';
         if (this.props.selectedQuestionId) {
             form = (
-              <form 
-                onSubmit={this.props.postMessage.bind(null, this.props.id)}
-                className="input-group">
-                <input
-                  type='text'
-                  className="form-control"
-                  placeholder="Write something..."
-                  value={this.props.chatInput}
-                  onChange={this.props.chatInputHandler} />
-                <span className="input-group-btn">
-                  <button
-                      className="btn btn-default">
-                      Submit
+              <div>
+                <form 
+                    onSubmit={this.props.postMessage.bind(null, this.props.id)}
+                    className="input-group">
+                    <input
+                    type='text'
+                    className="form-control"
+                    placeholder="Write something..."
+                    value={this.props.chatInput}
+                    onChange={this.props.chatInputHandler} />
+                    <span className="input-group-btn">
+                    <button
+                        className="btn btn-default">
+                        Submit
+                    </button>
+                    </span>
+                </form>
+                <div className="btn-group">
+                  <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Open <span className="caret"></span>
                   </button>
-                </span>
-              </form>                
+                  <ul className="dropdown-menu">
+                      <li><a href="#">Open</a></li>
+                      <li><a href="#">Pending</a></li>
+                      <li><a href="#">Closed</a></li>
+                  </ul>
+                </div>
+              </div>
             );
         }
         return (
             <div>
+              {title}
               {messages}
               {form}
             </div>

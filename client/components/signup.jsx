@@ -13,6 +13,9 @@ export default class Signup extends React.Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-4 col-sm-offset-4 text-center">
+                <h1>Usizo <small>help desk</small></h1>
+                <h5>by iDeski</h5>
+                <hr />
                 <div className="login-panel panel panel-default">
                   <div className="panel-heading">
                     <h1 className="panel-title">Create an Account</h1>
