@@ -9,7 +9,9 @@ function getQuestions(req, res) {
     {
         model: Models.Message
     }]
-  }).then(questions => res.send(questions));
+  }).then(questions => {
+    res.send(questions);
+  });
 }
 
 function addQuestion(req, res) {

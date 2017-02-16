@@ -2,6 +2,7 @@ import React from 'react';
 import ChatWindow from './chat-window.jsx';
 import ImageWindow from './image-window.jsx'
 import QuestionsWindow from './questions-window.jsx';
+import Header from './main-header.jsx';
 import {router} from 'react-router';
 
 export default class MainPage extends React.Component {
@@ -12,7 +13,10 @@ export default class MainPage extends React.Component {
     }
     render() {
         return (
+            <div>
+            <Header handleLogOut={this.props.handleLogOut} userName={this.props.userName}/>
             <div className="container">
+                
                 <div className="row">
                     <div className="col-sm-4">
                         <QuestionsWindow
@@ -33,9 +37,11 @@ export default class MainPage extends React.Component {
                             chatInputHandler={this.props.chatInputHandler}
                             chatInput={this.props.chatInput}
                             postMessage={this.props.postMessage}
+                            selectedQuestionId={this.props.selectedQuestionId}
                         />
                     </div>
                 </div>
+            </div>
             </div>
         )
     }

@@ -9,7 +9,7 @@ export default class App extends React.Component {
     super();
     this.state = {
       userId: '',
-      userName: 'miketyson001',
+      userName: '',
       questions: {},
       selectedQuestionId: '',
       selectedQuestionChat: [],
@@ -26,6 +26,7 @@ export default class App extends React.Component {
     this.postNewQuestion = this.postNewQuestion.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   handleSignUp (e) {
@@ -59,11 +60,26 @@ export default class App extends React.Component {
         }).then((res) => {
             return res.json();
         }).then((res) => {
-            this.setState({userName: res.username, userId: res.userId }, () => {
+            console.log('login res', res);
+            this.setState({
+              userName: username,
+              userId: res.userId
+            }, () => {
               browserHistory.push('/main_page');
             })
         })
     };
+
+  handleLogOut (e) {
+    e.preventDefault();
+    fetch('/logout', {
+      method: 'GET',
+    }).then((res) => {
+      this.setState({ username: null, userId: null }, () => {
+        browserHistory.push('/');
+      })
+    })
+  };
 
   getQuestions() {
     fetch('/questions', {
@@ -81,10 +97,7 @@ export default class App extends React.Component {
           chatMessages: [],
         }
       })
-      
-      this.setState(newState, () => {
-        // console.log('state', this.state);
-      });
+      this.setState(newState);
     })
   }
 
@@ -184,6 +197,7 @@ export default class App extends React.Component {
     return (
       <div>{React.cloneElement(this.props.children, {
         handleLogIn: this.handleLogIn,
+        handleLogOut: this.handleLogOut,
         handleSignUp: this.handleSignUp,
         questions: this.state.questions,
         getQuestions: this.getQuestions,

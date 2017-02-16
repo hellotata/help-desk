@@ -10,24 +10,14 @@ export default class ChatWindow extends React.Component {
             <div className="chat-window">
               <h4>Chat</h4>
               <div className="messages-body">
-                <ChatBox userName={this.props.userName} chatMessages={this.props.chatMessages}/>
+                <ChatBox
+                  userName={this.props.userName}
+                  chatMessages={this.props.chatMessages} 
+                  chatInput = {this.props.chatInput}
+                  chatInputHandler = {this.props.chatInputHandler}
+                  postMessage = {this.props.postMessage}
+                  selectedQuestionId={this.props.selectedQuestionId} />
               </div>
-              <form 
-                onSubmit={this.props.postMessage.bind(null, this.props.id)}
-                className="input-group">
-                <input
-                  type='text'
-                  className="form-control"
-                  placeholder="Write something..."
-                  value={this.props.chatInput}
-                  onChange={this.props.chatInputHandler} />
-                <span className="input-group-btn">
-                  <button
-                      className="btn btn-default">
-                      Submit
-                  </button>
-                </span>
-              </form>
             </div>
         )
     }
