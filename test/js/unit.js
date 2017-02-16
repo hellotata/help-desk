@@ -2,15 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const expect = require('expect');
 const mocha = require('mocha');
-const testJsonFile = ('../testdb.json');
+const userController = require('../../server/controllers/userController.js');
+const testJsonFile = require('../testdb.json');
 
 
 describe('db unit tests', () => {
 
   before(() => {
-    fs.writeFileSync(testJsonFile, JSON.stringify([], null, 2));
-    let testData = JSON.parse(fs.readFileSync(testJsonFile));
-    console.log(testData);
+    // fs.writeFileSync(testJsonFile, JSON.stringify([], null, 2));
+    // let testData = JSON.parse(fs.readFileSync(testJsonFile));
+    // console.log('test data: ', testData);
   });
 
   describe('#create', () => {
@@ -22,8 +23,8 @@ describe('db unit tests', () => {
 
     });
 
-    it('does not overwrite first game', () => {
-
+    it('all usernames must be unique', () => {
+      
     });
   });
 });
