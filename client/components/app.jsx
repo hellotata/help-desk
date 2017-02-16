@@ -35,6 +35,7 @@ export default class App extends React.Component {
       const password = e.target.password.value;
       fetch('/signup/', {
         method: 'POST',
+        credentials: 'include',
         body: JSON.stringify({username, password}),
         headers: new Headers({
           'Content-Type': 'application/json',
@@ -53,6 +54,7 @@ export default class App extends React.Component {
         const password = e.target.password.value
         fetch('/login/', {
           method: 'POST',
+          credentials: 'include',
           body: JSON.stringify({username, password}),
           headers: new Headers({
             'Content-Type': 'application/json',
@@ -71,6 +73,7 @@ export default class App extends React.Component {
     fetch('/logout', {
       method: 'GET',
     }).then((res) => {
+      console.log('checking handleLogout callback');
       this.setState({ username: null, userId: null }, () => {
         browserHistory.push('/');
       })
@@ -79,7 +82,8 @@ export default class App extends React.Component {
 
   getQuestions() {
     fetch('/questions', {
-      method: 'GET'
+      method: 'GET',
+      credentials: 'include',
     }).then((res) => {
       return res.json();
     }).then((res) => {

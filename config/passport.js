@@ -9,11 +9,13 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser((user, cb) => {
+        console.log('serializing user');
         cb(null, user.id);
     });
 
     // used to deserialize the user
     passport.deserializeUser((id, cb) => {
+        console.log('deserializing user');
         userCtrl.findById(id, (err, user) => {
             if (err) { return cb(err); }
             cb(null, user);
@@ -24,12 +26,12 @@ module.exports = function(passport) {
     // LOCAL LOGIN
     passport.use(new LocalStrategy(
         (username, password, cb) => {
-            // console.log('invoking strategy');
+            console.log('invoking strategy');
             userCtrl.findByUsername(username, (err, user) => {
                 if (err) { return cb(err); }
                 if (!user) { return cb(null, false); }
                 if (!bcrypt.compareSync(password, user.password)) { return cb(null, false); }
-                console.log('user verified');
+                console.log('username verified');
                 return cb(null, user);
             });
     }));
