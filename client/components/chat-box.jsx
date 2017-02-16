@@ -11,6 +11,12 @@ export default class ChatBox extends React.Component {
   //  }
 
     render() {
+        let title;
+        if (this.props.selectedQuestionId) {
+          title = (
+            <h5>Question ID: {this.props.selectedQuestionId}</h5>
+          );
+        }
         let messages = [];
         this.props.chatMessages.forEach((message) => {
             if (this.props.userName === message.userName) {
@@ -62,6 +68,7 @@ export default class ChatBox extends React.Component {
         }
         return (
             <div>
+              {title}
               {messages}
               {form}
             </div>

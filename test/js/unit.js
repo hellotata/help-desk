@@ -2,29 +2,33 @@ const fs = require('fs');
 const path = require('path');
 const expect = require('expect');
 const mocha = require('mocha');
-const userController = require('../../server/controllers/userController.js');
-const testJsonFile = require('../testdb.json');
+const request = require('supertest');
 
 
-describe('db unit tests', () => {
 
-  before(() => {
-    // fs.writeFileSync(testJsonFile, JSON.stringify([], null, 2));
-    // let testData = JSON.parse(fs.readFileSync(testJsonFile));
-    // console.log('test data: ', testData);
-  });
-
-  describe('#create', () => {
-    it('test', () => {
-
+  describe('loading express', () => {
+    let app, httpServer;
+    beforeEach(() => {
+      app = require('./../../server/server.js');
+      httpServer = require('http').createServer(app);
+      httpServer.listen(3001);
     });
-
-    it('unique ID field added', () => {
-
+    afterEach((done) => {
+      httpServer.close(done);
+      console.log('after each');
     });
-
-    it('all usernames must be unique', () => {
-      
+    it('responds to /', () => {
+      request(app)
+        .get('/nada')
+        .expect(200);
     });
   });
-});
+
+  describe('GET /', function() {
+    it('should return 200 OK', function(done) {
+      request(app)
+        .get('/')
+        .expect(200, done);
+    });
+  });
+
