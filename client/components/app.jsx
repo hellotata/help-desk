@@ -187,8 +187,8 @@ export default class App extends React.Component {
     }).then(() => {
       this.getQuestions();
       this.getMessages();
+      this.setState({ newQuestionInput: '' })
     })
-    this.setState({ newQuestionInput: '' })
   }
   
   gitHubLogin() {
